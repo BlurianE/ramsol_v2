@@ -1,0 +1,17 @@
+# Deshabilitar listado de directorios
+Options -Indexes
+
+# Bloquear acceso a todos los archivos PHP por defecto
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
+
+# Permitir exclusivamente los endpoints públicos del API
+<FilesMatch "^(contacto|token|captcha|diagnostico)\.php$">
+    Require all granted
+</FilesMatch>
+
+# Proteger archivos de datos, logs, markdown, json y plantillas de configuración
+<FilesMatch "\.(json|log|md|html|env|example\.php)$">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,75 @@
+<!-- Ramsol Contact Form – replaces wpcf7 div -->
+<div id="rs_contact_wrap" class="rs_contact-form" role="form">
+  <form id="rs_contact_form" novalidate>
+
+    <!-- Honeypot – hidden from humans -->
+    <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+      <label for="rs_hp_k7">No llenar</label>
+      <input type="text" name="rs_hp_k7" id="rs_hp_k7" tabindex="-1" autocomplete="off" value="">
+    </div>
+
+    <!-- Hidden fields -->
+    <input type="hidden" name="token" id="rs_token" value="">
+    <input type="hidden" name="captcha_id" id="rs_captcha_id" value="">
+
+    <!-- Nombre -->
+    <div class="rs_field-group">
+      <label for="rs_nombre">Nombre <abbr title="obligatorio">*</abbr></label>
+      <input type="text" name="nombre" id="rs_nombre" required
+             minlength="2" maxlength="100"
+             placeholder="Tu nombre" autocomplete="name">
+      <span class="rs_field-error" id="rs_nombre_err"></span>
+    </div>
+
+    <!-- Email -->
+    <div class="rs_field-group">
+      <label for="rs_email">Correo electrónico <abbr title="obligatorio">*</abbr></label>
+      <input type="email" name="email" id="rs_email" required
+             placeholder="correo@ejemplo.com" autocomplete="email">
+      <span class="rs_field-error" id="rs_email_err"></span>
+    </div>
+
+    <!-- Asunto -->
+    <div class="rs_field-group">
+      <label for="rs_asunto">Asunto <abbr title="obligatorio">*</abbr></label>
+      <input type="text" name="asunto" id="rs_asunto" required
+             maxlength="150"
+             placeholder="Asunto de tu mensaje">
+      <span class="rs_field-error" id="rs_asunto_err"></span>
+    </div>
+
+    <!-- Mensaje -->
+    <div class="rs_field-group">
+      <label for="rs_mensaje">Mensaje</label>
+      <textarea name="mensaje" id="rs_mensaje" rows="6"
+                maxlength="2000"
+                placeholder="Escribe tu mensaje aquí…"></textarea>
+      <span class="rs_field-error" id="rs_mensaje_err"></span>
+    </div>
+
+    <!-- Captcha -->
+    <div class="rs_field-group rs_captcha-group" id="rs_captcha_wrap" style="display:none;">
+      <label for="rs_captcha_ans">Código de seguridad <abbr title="obligatorio">*</abbr></label>
+      <div class="rs_captcha-row">
+        <img id="rs_captcha_img" src="" alt="Captcha" width="200" height="60">
+        <button type="button" id="rs_captcha_refresh" class="rs_captcha-refresh" title="Nueva imagen" aria-label="Obtener nueva imagen captcha">&#x21bb;</button>
+        <input type="text" name="captcha_ans" id="rs_captcha_ans"
+               maxlength="10" autocomplete="off"
+               placeholder="Escribe lo que ves">
+      </div>
+      <span class="rs_field-error" id="rs_captcha_err"></span>
+    </div>
+
+    <!-- Submit -->
+    <div class="rs_field-group rs_submit-group">
+      <button type="submit" id="rs_submit_btn" class="rs_btn-submit">
+        <span class="rs_btn-text">Enviar mensaje</span>
+        <span class="rs_spinner" style="display:none;"></span>
+      </button>
+    </div>
+
+    <!-- Response messages -->
+    <div id="rs_form_msg" class="rs_form-msg" role="alert" aria-live="polite"></div>
+
+  </form>
+</div>
