@@ -1,0 +1,677 @@
+/* ==========================================================================
+   RAMSOL V2 - COMPONENTES UNIFICADOS PARA TODAS LAS LANDINGS
+   01. HERO BANNER LIMPIO (IMAGEN ÚNICA O CARRUSEL + LOGOTIPO + BOTONES)
+   02. CARRUSEL DE GALERÍA HORIZONTAL + VISOR LIGHTBOX
+   ========================================================================== */
+
+/* 01. HERO BANNER UNIFICADO (CONGRUENTE CON PÉRGOLAS Y HOME) */
+.hero-slider-section.hero-banner-clean,
+#top .hero-slider-section.hero-banner-clean {
+  position: relative !important;
+  width: 100% !important;
+  padding-top: var(--header-height, 80px) !important;
+  margin: 0 !important;
+  background-color: #0b0d10 !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Evita hueco superior de 70px del contenedor legacy #main debajo del nuevo hero */
+.hero-slider-section + #wrap_all #main,
+.html_header_top.html_header_sticky #top .hero-slider-section + #wrap_all #main {
+  padding-top: 0 !important;
+}
+
+.hero-banner-clean .hero-slider {
+  position: relative !important;
+  width: 100% !important;
+  height: 86vh !important;
+  min-height: 560px !important;
+  max-height: 880px !important;
+  margin: 0 !important;
+}
+
+.hero-banner-clean .hero-slide {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.9s;
+  overflow: hidden !important;
+}
+
+.hero-banner-clean .hero-slide.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 2 !important;
+}
+
+.hero-banner-clean .hero-slide-picture {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.hero-banner-clean .hero-slide-img,
+#top .hero-banner-clean .hero-slide-img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  transform: scale(1.0);
+  transition: transform 9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-banner-clean .hero-slide.active .hero-slide-img {
+  transform: scale(1.05);
+}
+
+.hero-banner-clean .hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.24) 0%,
+    rgba(0, 0, 0, 0.06) 32%,
+    rgba(0, 0, 0, 0.14) 58%,
+    rgba(0, 0, 0, 0.76) 100%
+  ) !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.hero-banner-clean .hero-caption {
+  position: absolute !important;
+  bottom: 3.5rem !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 3 !important;
+  color: #FFFFFF !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+.hero-banner-clean .hero-caption-inner {
+  max-width: var(--max-width, 1280px) !important;
+  margin: 0 auto !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.hero-banner-clean .hero-brand-wrap {
+  margin: 0 0 1.25rem 0 !important;
+  display: block !important;
+}
+
+.hero-banner-clean .hero-brand-logo,
+#top .hero-banner-clean .hero-brand-logo {
+  height: 52px !important;
+  width: auto !important;
+  max-width: 280px !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.hero-banner-clean .hero-brand-logo.hero-brand-wide,
+#top .hero-banner-clean .hero-brand-logo.hero-brand-wide {
+  height: 44px !important;
+  max-width: min(760px, 90vw) !important;
+}
+
+.hero-banner-clean .hero-brand-logo.hero-brand-lg,
+#top .hero-banner-clean .hero-brand-logo.hero-brand-lg {
+  height: 74px !important;
+  max-width: min(440px, 86vw) !important;
+}
+
+.hero-banner-clean .hero-brand-wrap:last-child,
+#top .hero-banner-clean .hero-brand-wrap:last-child,
+.hero-banner-clean .hero-title:last-child,
+#top .hero-banner-clean .hero-title:last-child,
+.hero-banner-clean .hero-subtitle:last-child,
+#top .hero-banner-clean .hero-subtitle:last-child {
+  margin-bottom: 0 !important;
+}
+
+.hero-banner-clean .hero-title,
+#top .hero-banner-clean .hero-title {
+  font-family: var(--font-heading, 'Montserrat', sans-serif) !important;
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.01em !important;
+  color: #FFFFFF !important;
+  text-shadow: none !important;
+  text-transform: uppercase !important;
+  margin: 0 0 0.6rem 0 !important;
+  padding: 0 !important;
+  max-width: 780px !important;
+}
+
+.hero-banner-clean .hero-title strong,
+#top .hero-banner-clean .hero-title strong {
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+}
+
+.hero-banner-clean .hero-subtitle,
+#top .hero-banner-clean .hero-subtitle {
+  order: 0 !important;
+  font-family: var(--font-body, 'Lato', sans-serif) !important;
+  font-size: clamp(0.85rem, 1.2vw, 1rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: none !important;
+  margin: 0 0 1.75rem 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+.hero-banner-clean .hero-subtitle::before {
+  display: none !important;
+}
+
+.hero-banner-clean .hero-btn-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  flex-wrap: wrap !important;
+}
+
+.hero-banner-clean .hero-btn-group .btn,
+#top .hero-banner-clean .hero-btn-group .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  font-family: var(--font-heading, 'Montserrat', sans-serif) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  padding: 0.7rem 1.4rem !important;
+  border-radius: 9999px !important;
+  line-height: 1.2 !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+
+.hero-banner-clean .btn-catalog,
+#top .hero-banner-clean .btn-catalog {
+  background: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.42) !important;
+  color: #FFFFFF !important;
+  transition: all 0.22s ease !important;
+}
+
+.hero-banner-clean .btn-catalog:hover,
+#top .hero-banner-clean .btn-catalog:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+.hero-banner-clean .btn-quote,
+#top .hero-banner-clean .btn-quote {
+  background-color: var(--color-accent-red, #E74339) !important;
+  border: 1px solid var(--color-accent-red, #E74339) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 15px rgba(231, 67, 57, 0.35) !important;
+  transition: all 0.22s ease !important;
+}
+
+.hero-banner-clean .btn-quote:hover,
+#top .hero-banner-clean .btn-quote:hover {
+  background-color: var(--color-accent-red-hover, #c6332a) !important;
+  border-color: var(--color-accent-red-hover, #c6332a) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(231, 67, 57, 0.5) !important;
+}
+
+/* Controles opcionales cuando el Hero Banner es Carrusel */
+.hero-banner-clean .slider-arrow {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 5 !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  background-color: rgba(0, 0, 0, 0.32) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.hero-banner-clean .slider-arrow.prev { left: 1.5rem !important; }
+.hero-banner-clean .slider-arrow.next { right: 1.5rem !important; }
+
+.hero-banner-clean .slider-dots {
+  position: absolute !important;
+  bottom: 1.5rem !important;
+  right: 2rem !important;
+  z-index: 5 !important;
+  display: flex !important;
+  gap: 0.5rem !important;
+}
+
+.hero-banner-clean .slider-dot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 999px !important;
+  border: none !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+}
+
+.hero-banner-clean .slider-dot.active {
+  width: 26px !important;
+  background: var(--color-accent-red, #E74339) !important;
+}
+
+@media (max-width: 768px) {
+  .hero-slider-section.hero-banner-clean .hero-slider {
+    height: 85vh !important;
+    min-height: 560px !important;
+  }
+  .hero-banner-clean .hero-caption {
+    bottom: 1.75rem !important;
+    padding: 0 1.25rem !important;
+  }
+  .hero-banner-clean .hero-brand-wrap {
+    margin-bottom: 0.75rem !important;
+  }
+  .hero-banner-clean .hero-brand-logo,
+  #top .hero-banner-clean .hero-brand-logo {
+    height: 38px !important;
+    max-width: 200px !important;
+  }
+  .hero-banner-clean .hero-brand-logo.hero-brand-wide,
+  #top .hero-banner-clean .hero-brand-logo.hero-brand-wide {
+    height: auto !important;
+    max-height: 46px !important;
+    max-width: 90vw !important;
+  }
+  .hero-banner-clean .hero-brand-logo.hero-brand-lg,
+  #top .hero-banner-clean .hero-brand-logo.hero-brand-lg {
+    height: 52px !important;
+    max-width: 82vw !important;
+  }
+  .hero-banner-clean .hero-title,
+  #top .hero-banner-clean .hero-title {
+    font-size: 1.65rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0.45rem !important;
+  }
+  .hero-banner-clean .hero-subtitle,
+  #top .hero-banner-clean .hero-subtitle {
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1.15rem !important;
+  }
+  .hero-banner-clean .hero-btn-group {
+    gap: 0.65rem !important;
+    width: 100% !important;
+  }
+  .hero-banner-clean .hero-btn-group .btn,
+  #top .hero-banner-clean .hero-btn-group .btn {
+    padding: 0.6rem 1.1rem !important;
+    font-size: 0.76rem !important;
+  }
+}
+
+/* ==========================================================================
+   02. CARRUSEL DE GALERÍA HORIZONTAL + VISOR LIGHTBOX (ESTILO SECCIÓN 4 PÉRGOLAS)
+   ========================================================================== */
+.gallery-carousel-wrap,
+#top .gallery-carousel-wrap {
+  position: relative !important;
+  max-width: var(--max-width, 1280px) !important;
+  width: 100% !important;
+  margin: 1.5rem auto 2.5rem auto !important;
+  box-sizing: border-box !important;
+}
+
+.gallery-carousel-track,
+#top .gallery-carousel-track {
+  display: flex !important;
+  align-items: stretch !important;
+  gap: 1.15rem !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory !important;
+  scroll-behavior: smooth !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding: 0.35rem 0.15rem 1rem 0.15rem !important;
+  margin: 0 !important;
+}
+
+.gallery-carousel-track::-webkit-scrollbar {
+  display: none !important;
+}
+
+.carousel-gallery-item,
+#top .carousel-gallery-item {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  height: 390px !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  background-color: #E5E7EB !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08) !important;
+  scroll-snap-align: start !important;
+  cursor: zoom-in !important;
+  text-decoration: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  display: block !important;
+  transform: translateZ(0);
+}
+
+/* Anula el overlay circular de Enfold en enlaces con imagen */
+#top .carousel-gallery-item .image-overlay {
+  display: none !important;
+}
+
+.carousel-gallery-item img,
+#top .carousel-gallery-item img {
+  height: 100% !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.carousel-gallery-item::after,
+#top .carousel-gallery-item::after {
+  content: '\f065' !important;
+  font-family: 'Font Awesome 6 Free', 'Font Awesome 5 Free', FontAwesome !important;
+  font-weight: 900 !important;
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  background: rgba(17, 17, 17, 0.62) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  color: #FFFFFF !important;
+  font-size: 0.8rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  transform: scale(0.88) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+  pointer-events: none !important;
+}
+
+.carousel-gallery-item:hover img,
+#top .carousel-gallery-item:hover img {
+  transform: scale(1.04) !important;
+}
+
+.carousel-gallery-item:hover::after,
+#top .carousel-gallery-item:hover::after {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+.gallery-carousel-btn,
+#top .gallery-carousel-btn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-60%) !important;
+  z-index: 10 !important;
+  width: 48px !important;
+  height: 48px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(17, 17, 17, 0.08) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #111111 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+  line-height: 1 !important;
+  transition: background 0.22s ease, color 0.22s ease !important;
+}
+
+.gallery-carousel-btn:hover,
+#top .gallery-carousel-btn:hover {
+  background: var(--color-accent-red, #E74339) !important;
+  border-color: var(--color-accent-red, #E74339) !important;
+  color: #FFFFFF !important;
+}
+
+.gallery-carousel-btn.prev,
+#top .gallery-carousel-btn.prev {
+  left: -18px !important;
+}
+
+.gallery-carousel-btn.next,
+#top .gallery-carousel-btn.next {
+  right: -18px !important;
+}
+
+.gallery-carousel-footer,
+#top .gallery-carousel-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.5rem !important;
+  margin-top: 1rem !important;
+}
+
+.gallery-carousel-progress,
+#top .gallery-carousel-progress {
+  flex: 1 1 auto !important;
+  height: 3px !important;
+  background: rgba(17, 17, 17, 0.1) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+}
+
+.gallery-carousel-progress-bar,
+#top .gallery-carousel-progress-bar {
+  height: 100% !important;
+  width: 15%;
+  background: var(--color-accent-red, #E74339) !important;
+  border-radius: 999px !important;
+  transition: width 0.2s ease !important;
+}
+
+.gallery-carousel-count,
+#top .gallery-carousel-count {
+  flex: 0 0 auto !important;
+  font-family: var(--font-heading, 'Montserrat', sans-serif) !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  color: var(--color-text-muted, #6B7280) !important;
+}
+
+@media (max-width: 1024px) {
+  .carousel-gallery-item,
+  #top .carousel-gallery-item {
+    height: 310px !important;
+  }
+  .gallery-carousel-btn.prev,
+  #top .gallery-carousel-btn.prev {
+    left: 8px !important;
+  }
+  .gallery-carousel-btn.next,
+  #top .gallery-carousel-btn.next {
+    right: 8px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-gallery-item,
+  #top .carousel-gallery-item {
+    height: 240px !important;
+    border-radius: 10px !important;
+  }
+  .gallery-carousel-btn,
+  #top .gallery-carousel-btn {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+/* Lightbox Modal Universal */
+.ramsol-lightbox {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000000 !important;
+  background: rgba(10, 10, 12, 0.94) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+  padding: 2rem !important;
+  box-sizing: border-box !important;
+}
+
+.ramsol-lightbox.open {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.ramsol-lightbox-img,
+#top .ramsol-lightbox-img {
+  max-width: min(90vw, 1240px) !important;
+  max-height: 85vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 10px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65) !important;
+  user-select: none !important;
+  margin: 0 !important;
+}
+
+.ramsol-lightbox-close,
+.ramsol-lightbox-nav,
+#top .ramsol-lightbox-close,
+#top .ramsol-lightbox-nav {
+  position: absolute !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF !important;
+  width: 46px !important;
+  height: 46px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 1.1rem !important;
+  transition: background 0.2s ease !important;
+}
+
+.ramsol-lightbox-close:hover,
+.ramsol-lightbox-nav:hover,
+#top .ramsol-lightbox-close:hover,
+#top .ramsol-lightbox-nav:hover {
+  background: var(--color-accent-red, #E74339) !important;
+  border-color: var(--color-accent-red, #E74339) !important;
+}
+
+.ramsol-lightbox-close,
+#top .ramsol-lightbox-close {
+  top: 1.5rem !important;
+  right: 1.5rem !important;
+}
+
+.ramsol-lightbox-nav.prev,
+#top .ramsol-lightbox-nav.prev {
+  left: 1.5rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.ramsol-lightbox-nav.next,
+#top .ramsol-lightbox-nav.next {
+  right: 1.5rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.ramsol-lightbox-counter {
+  position: absolute !important;
+  bottom: 1.25rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  font-family: var(--font-heading, 'Montserrat', sans-serif) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  padding: 0.35rem 0.9rem !important;
+  border-radius: 999px !important;
+}
+
+@media (max-width: 640px) {
+  .ramsol-lightbox { padding: 1rem !important; }
+  .ramsol-lightbox-nav, #top .ramsol-lightbox-nav { width: 40px !important; height: 40px !important; }
+  .ramsol-lightbox-nav.prev, #top .ramsol-lightbox-nav.prev { left: 0.65rem !important; }
+  .ramsol-lightbox-nav.next, #top .ramsol-lightbox-nav.next { right: 0.65rem !important; }
+}

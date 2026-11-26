@@ -402,6 +402,7 @@ document.addEventListener('DOMContentLoaded', function () {
       items.forEach(function (el, idx) {
         el.addEventListener('click', function (e) {
           e.preventDefault();
+          e.stopPropagation();
           openLightbox(sources, idx);
         });
       });
