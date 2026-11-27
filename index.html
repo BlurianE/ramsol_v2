@@ -27,7 +27,7 @@
   <!-- Iconografía FontAwesome -->
   <link rel="stylesheet" href="css/all.min.css">
   <!-- Estilos Modernos y Minimalistas Ramsol -->
-  <link rel="stylesheet" href="css/ramsol-custom.css">
+  <link rel="stylesheet" href="css/ramsol-custom.css?v=2.2">
 
   <!-- Scripts iniciales locales y analítica condicional -->
   <script src="js/local-file.js"></script>
@@ -397,17 +397,20 @@
     </section>
 
     <!-- ==========================================================================
-       SECCIÓN 03: MANIFIESTO Y FÓRMULA TERRAZALOFT
-       - Declaración de marca con rotador de texto dinámico
-       - Ecuación visual de integración de soluciones (#2B2B2B)
+       SECCIÓN 03: MANIFIESTO Y FÓRMULA TERRAZALOFT (SECCIÓN 1 DEL CONTENIDO)
+       - Fondo de color #2B2B2B
+       - Rotador de texto dinámico con trazo exterior centrado
+       - Ecuación visual TerrazaLoft
        ========================================================================== -->
     <section class="manifesto-section section-padding reveal-on-scroll">
       <div class="container">
-        <div class="text-rotator-wrapper">
-          <div class="text-rotator" role="region" aria-live="polite" aria-atomic="true">
-            <h2 class="rotator-item active">Abre la puerta al exterior con Ramsol.</h2>
-            <h2 class="rotator-item">Vive tu sueño sin preocupaciones</h2>
-            <h2 class="rotator-item">Disfruta al máximo con familia y amigos.</h2>
+        <div class="manifesto-rotator-container">
+          <div class="manifesto-rotator-pill">
+            <div class="manifesto-rotator-track" id="manifestoRotator" role="region" aria-label="Frases Ramsol" aria-live="polite">
+              <h2 class="manifesto-rotator-item active">Abre la puerta al exterior con Ramsol</h2>
+              <h2 class="manifesto-rotator-item">Vive tu sueño sin preocupaciones</h2>
+              <h2 class="manifesto-rotator-item">Disfruta al máximo con familia y amigos</h2>
+            </div>
           </div>
         </div>
         <div class="manifesto-equation">
@@ -979,7 +982,7 @@
   <!-- ==========================================================================
      SCRIPTS DE FUNCIONALIDAD
      ========================================================================== -->
-  <script src="js/ramsol-main.js"></script>
+  <script src="js/ramsol-main.js?v=2.2"></script>
 
 </body>
 </html>

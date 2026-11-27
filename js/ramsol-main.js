@@ -211,86 +211,52 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ==========================================================================
-     03B. ROTADOR DE TEXTO (HOME - SECCIÓN MANIFIESTO)
-     - Rotación suave y automática de frases centradas
-     - Igualación dinámica de altura para evitar salto de layout
+     03B. ROTADOR DE TEXTO (MANIFIESTO / SECCIÓN 1 DEL HOME #2B2B2B)
+     - Rotación continua entre las 3 frases idéntica al original Enfold
+     - Crossfade puro de opacidad estacionario (sin salto vertical)
      ========================================================================== */
-  const textRotator = document.querySelector('.text-rotator');
-  if (textRotator) {
-    const rotatorItems = Array.from(textRotator.querySelectorAll('.rotator-item'));
-    if (rotatorItems.length > 1) {
-      let rotatorIndex = 0;
-      let rotatorTimer = null;
-      const rotationInterval = 4000; // 4 segundos como el original
+  const rotatorTrack = document.getElementById('manifestoRotator');
+  if (rotatorTrack) {
+    const items = rotatorTrack.querySelectorAll('.manifesto-rotator-item');
+    if (items.length > 1) {
+      let currentIndex = 0;
+      let timer = null;
+      const intervalMs = 4000; // 4s como en el original
 
-      function syncRotatorHeight() {
-        let maxHeight = 0;
-        rotatorItems.forEach(function (item) {
-          const wasActive = item.classList.contains('active');
-          const prevPosition = item.style.position;
-          const prevVisibility = item.style.visibility;
-          const prevDisplay = item.style.display;
+      function rotateNext() {
+        const prevItem = items[currentIndex];
+        currentIndex = (currentIndex + 1) % items.length;
+        const nextItem = items[currentIndex];
 
-          item.style.position = 'static';
-          item.style.visibility = 'hidden';
-          item.style.display = 'block';
-          item.style.transform = 'none';
+        // Fade out del texto actual
+        prevItem.classList.remove('active');
 
-          const h = item.offsetHeight;
-          if (h > maxHeight) maxHeight = h;
-
-          item.style.position = prevPosition;
-          item.style.visibility = prevVisibility;
-          item.style.display = prevDisplay;
-          item.style.transform = '';
-          if (!wasActive) item.classList.remove('active');
-        });
-
-        if (maxHeight > 0) {
-          textRotator.style.minHeight = maxHeight + 'px';
-        }
-      }
-
-      function nextRotatorPhrase() {
-        const currentItem = rotatorItems[rotatorIndex];
-        currentItem.classList.remove('active');
-        currentItem.classList.add('leaving');
-
+        // Fade in del siguiente texto en la misma posición (crossfade)
         setTimeout(function () {
-          currentItem.classList.remove('leaving');
-        }, 600);
-
-        rotatorIndex = (rotatorIndex + 1) % rotatorItems.length;
-        const nextItem = rotatorItems[rotatorIndex];
-        nextItem.classList.add('active');
+          nextItem.classList.add('active');
+        }, 200);
       }
 
-      function startRotator() {
-        if (!rotatorTimer) {
-          rotatorTimer = setInterval(nextRotatorPhrase, rotationInterval);
+      function startTimer() {
+        if (!timer) {
+          timer = setInterval(rotateNext, intervalMs);
         }
       }
 
-      function stopRotator() {
-        if (rotatorTimer) {
-          clearInterval(rotatorTimer);
-          rotatorTimer = null;
+      function stopTimer() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
         }
       }
 
-      syncRotatorHeight();
-      window.addEventListener('resize', syncRotatorHeight);
-
-      startRotator();
-
-      textRotator.addEventListener('mouseenter', stopRotator);
-      textRotator.addEventListener('mouseleave', startRotator);
+      startTimer();
 
       document.addEventListener('visibilitychange', function () {
         if (document.hidden) {
-          stopRotator();
+          stopTimer();
         } else {
-          startRotator();
+          startTimer();
         }
       });
     }
