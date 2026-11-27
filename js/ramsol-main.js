@@ -211,6 +211,92 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ==========================================================================
+     03B. ROTADOR DE TEXTO (HOME - SECCIÓN MANIFIESTO)
+     - Rotación suave y automática de frases centradas
+     - Igualación dinámica de altura para evitar salto de layout
+     ========================================================================== */
+  const textRotator = document.querySelector('.text-rotator');
+  if (textRotator) {
+    const rotatorItems = Array.from(textRotator.querySelectorAll('.rotator-item'));
+    if (rotatorItems.length > 1) {
+      let rotatorIndex = 0;
+      let rotatorTimer = null;
+      const rotationInterval = 4000; // 4 segundos como el original
+
+      function syncRotatorHeight() {
+        let maxHeight = 0;
+        rotatorItems.forEach(function (item) {
+          const wasActive = item.classList.contains('active');
+          const prevPosition = item.style.position;
+          const prevVisibility = item.style.visibility;
+          const prevDisplay = item.style.display;
+
+          item.style.position = 'static';
+          item.style.visibility = 'hidden';
+          item.style.display = 'block';
+          item.style.transform = 'none';
+
+          const h = item.offsetHeight;
+          if (h > maxHeight) maxHeight = h;
+
+          item.style.position = prevPosition;
+          item.style.visibility = prevVisibility;
+          item.style.display = prevDisplay;
+          item.style.transform = '';
+          if (!wasActive) item.classList.remove('active');
+        });
+
+        if (maxHeight > 0) {
+          textRotator.style.minHeight = maxHeight + 'px';
+        }
+      }
+
+      function nextRotatorPhrase() {
+        const currentItem = rotatorItems[rotatorIndex];
+        currentItem.classList.remove('active');
+        currentItem.classList.add('leaving');
+
+        setTimeout(function () {
+          currentItem.classList.remove('leaving');
+        }, 600);
+
+        rotatorIndex = (rotatorIndex + 1) % rotatorItems.length;
+        const nextItem = rotatorItems[rotatorIndex];
+        nextItem.classList.add('active');
+      }
+
+      function startRotator() {
+        if (!rotatorTimer) {
+          rotatorTimer = setInterval(nextRotatorPhrase, rotationInterval);
+        }
+      }
+
+      function stopRotator() {
+        if (rotatorTimer) {
+          clearInterval(rotatorTimer);
+          rotatorTimer = null;
+        }
+      }
+
+      syncRotatorHeight();
+      window.addEventListener('resize', syncRotatorHeight);
+
+      startRotator();
+
+      textRotator.addEventListener('mouseenter', stopRotator);
+      textRotator.addEventListener('mouseleave', startRotator);
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          stopRotator();
+        } else {
+          startRotator();
+        }
+      });
+    }
+  }
+
+  /* ==========================================================================
      04. REPRODUCTOR DE VIDEO FACADE (CARGA DIFERIDA DE YOUTUBE)
      ========================================================================== */
   const videoFacades = document.querySelectorAll('.video-facade-container');
