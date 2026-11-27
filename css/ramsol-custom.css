@@ -73,6 +73,7 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -809,7 +810,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 1.75rem auto;
+  margin: 0 auto;
   max-width: 680px;
 }
 
@@ -910,7 +911,7 @@ button {
 }
 
 /* ==========================================================================
-   06. SECCIÓN: PÉRGOLAS & SISTEMA FILTERSOL
+   06. SECCIÓN: PÉRGOLAS & SISTEMA FILTERSOL (SECCIÓN 2 DEL CONTENIDO)
    ========================================================================== */
 .filtersol-section {
   background-color: var(--color-bg-light);
@@ -918,51 +919,192 @@ button {
 
 .filtersol-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
   gap: 3.5rem;
   align-items: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .filtersol-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 }
 
-.filtersol-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.filtersol-thumb {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  background-color: #FFFFFF;
-  transition: transform var(--transition-normal);
-}
-
-.filtersol-thumb:hover {
-  transform: translateY(-5px);
-}
-
-.filtersol-badge-card {
+.filtersol-feature-card {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  align-items: flex-start;
+  gap: 1.25rem;
   background: #FFFFFF;
-  padding: 1.75rem;
+  padding: 1.5rem 1.75rem;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   border-left: 4px solid var(--color-accent-red);
 }
 
-.filtersol-badge-card img {
-  width: 80px;
+.filtersol-feature-icon {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 1.35rem;
+  padding-top: 0.2rem;
+}
+
+/* Carrusel de Fotografías con Badge Sobrepuesto */
+.filtersol-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+/* Badge del Sistema FilterSol sobrepuesto en la esquina superior derecha */
+.filtersol-overlay-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 10;
+  max-width: 210px;
+  width: 36%;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s ease;
+}
+
+.filtersol-overlay-badge img {
+  width: 100%;
   height: auto;
+  display: block;
+}
+
+.filtersol-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.filtersol-slides-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.filtersol-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filtersol-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filtersol-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Flechas de navegación */
+.filtersol-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.filtersol-arrow:hover {
+  background: #FFFFFF;
+  color: var(--color-accent-red, #E74339);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.filtersol-arrow.prev {
+  left: 14px;
+}
+
+.filtersol-arrow.next {
+  right: 14px;
+}
+
+/* Paginación / dots */
+.filtersol-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 6px 12px;
+  border-radius: 9999px;
+}
+
+.filtersol-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.filtersol-dot.active {
+  background: #FFFFFF;
+  width: 22px;
+  border-radius: 9999px;
+}
+
+@media (max-width: 600px) {
+  .filtersol-overlay-badge {
+    top: 10px;
+    right: 10px;
+    max-width: 135px;
+    width: 36%;
+  }
+  .filtersol-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Pleca TerrazaLoft colocada debajo de los demás elementos */
+.manifesto-equation-wrapper {
+  margin-top: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ==========================================================================
@@ -1169,27 +1311,104 @@ button {
 
 /* ==========================================================================
    09. SECCIÓN: MESAS CUBIERTAS RAMSTONE
+   - Efecto de imagen fija (background-attachment: fixed) idéntico al original
    ========================================================================== */
 .ramstone-section {
-  background-color: var(--color-bg-white);
-  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  background-image: url('../images/Ramsol_Todo-Tereno_Muebles_Mesa-Cubierta-Ramsol_01.jpg');
+  background-attachment: fixed !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  color: #FFFFFF;
   text-align: center;
+  padding: 6.5rem 1.5rem;
+  z-index: 1;
+}
+
+.ramstone-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ramstone-section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.ramstone-section .section-title {
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+}
+
+.ramstone-section .section-description {
+  color: #F3F4F6;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 0 auto 2.5rem auto;
 }
 
 .ramstone-banner {
-  max-width: 620px;
+  max-width: 525px;
   margin: 0 auto 2rem auto;
 }
 
 .ramstone-banner img {
   margin: 0 auto;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.4));
 }
 
 /* ==========================================================================
    10. SECCIÓN: MUEBLES TODO TERRENO
+   - Efecto de imagen fija (background-attachment: fixed) idéntico al original
    ========================================================================== */
 .furniture-section {
-  background-color: var(--color-bg-light);
+  position: relative;
+  background-image: url('../images/Ramsol_Muebles-TodoTerreno_Home_Image-04_02.jpg');
+  background-attachment: fixed !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  color: #FFFFFF;
+  padding: 6rem 1.5rem;
+  z-index: 1;
+}
+
+.furniture-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 10, 10, 0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.furniture-section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.furniture-section .section-tag {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.furniture-section .section-title {
+  color: #FFFFFF;
 }
 
 .split-content-grid {
@@ -1208,9 +1427,67 @@ button {
 
 .split-text-col p {
   font-size: 1.15rem;
-  color: var(--color-text-main);
+  color: #F3F4F6;
   margin-bottom: 1.25rem;
   line-height: 1.8;
+}
+
+.split-text-col strong {
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .ramstone-section,
+  .furniture-section {
+    background-attachment: scroll;
+    padding: 4rem 1rem;
+  }
+}
+
+/* ==========================================================================
+   BANNER TERRAZA LOFT (RESPONSIVE)
+   ========================================================================== */
+.terraza-loft-banner-section {
+  background-color: var(--color-bg-white);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  padding: 3.5rem 1.5rem;
+}
+
+.terraza-loft-banner-img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .terraza-loft-banner-section {
+    padding: 2rem 1rem;
+  }
+}
+
+/* ==========================================================================
+   VIDEO FRAME WRAPPER RESPONSIVO (IFRAME YOUTUBE)
+   ========================================================================== */
+.video-frame-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0D0D0D;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22);
+}
+
+.video-frame-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 /* ==========================================================================
@@ -1222,6 +1499,21 @@ button {
 
 .prolen-badge-wrap {
   margin-bottom: 1.5rem;
+}
+
+.prolen-section .split-text-col p {
+  color: #000000 !important;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.prolen-section .split-text-col p strong {
+  color: #000000 !important;
+}
+
+.prolen-section .split-text-col p em {
+  color: #222222 !important;
 }
 
 .prolen-features-list {
@@ -1238,7 +1530,7 @@ button {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: #000000;
 }
 
 .prolen-feature-dot {
@@ -1246,6 +1538,45 @@ button {
   height: 8px;
   border-radius: 50%;
   background-color: var(--color-accent-red);
+}
+
+/* ==========================================================================
+   SECCIÓN: ZERO MADERA - ZERO PREOCUPACIONES (EFECTO PARALLAX ORIGINAL)
+   - Imagen de fondo fija con ventana parallax idéntica al original
+   - Sin overlay artificial, preservando los tonos y contraste natural de la foto
+   ========================================================================== */
+.zeromadera-zeropreocupaciones-section {
+  position: relative;
+  background-image: url('../images/Ramsol_Zeromadera_Zeropreocupaciones_R2025.jpeg');
+  background-attachment: fixed !important;
+  background-position: 50% 100% !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  text-align: center;
+  padding: calc(10.5rem + 20px) 1.5rem;
+  z-index: 1;
+  overflow: hidden;
+  transform: none !important;
+}
+
+.zeromadera-zeropreocupaciones-section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.zeromadera-zeropreocupaciones-img {
+  width: 100%;
+  max-width: 495px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .zeromadera-zeropreocupaciones-section {
+    background-attachment: scroll !important;
+    padding: calc(6rem + 20px) 1rem;
+  }
 }
 
 /* ==========================================================================
@@ -1282,37 +1613,47 @@ button {
    13. SECCIÓN: COLECCIÓN DE AUTOR ZERO | ONE (AMD 2026)
    ========================================================================== */
 .zero-one-section {
-  background-color: var(--color-bg-white);
+  background-color: #F8F9FA;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
 
 .zero-one-card {
-  background: linear-gradient(135deg, #111111 0%, #1f2937 100%);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 4rem 3rem;
-  color: #FFFFFF;
+  padding: 3.5rem 3rem;
+  color: var(--color-text-main);
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 3.5rem;
   align-items: center;
-  box-shadow: var(--shadow-xl);
-}
-
-@media (max-width: 900px) {
-  .zero-one-card {
-    grid-template-columns: 1fr;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-  }
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
 }
 
 .zero-one-title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
   font-weight: 800;
+  color: var(--color-primary);
   letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.zero-one-brand-logo-wrap {
+  margin: 1.25rem 0 1.5rem 0;
+}
+
+.zero-one-brand-logo {
+  max-width: 190px;
+  height: auto;
+  display: block;
+}
+
+.zero-one-description {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
 }
 
 .zero-one-actions {
@@ -1322,30 +1663,53 @@ button {
   margin-top: 2rem;
 }
 
-@media (max-width: 900px) {
-  .zero-one-actions {
-    justify-content: center;
-  }
+.zero-one-photo-wrap {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-.zero-one-img-wrap {
-  text-align: center;
+.zero-one-photo {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-.zero-one-img-wrap img {
-  max-height: 320px;
-  margin: 0 auto;
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+.zero-one-photo:hover {
+  transform: scale(1.02);
 }
 
 .zero-one-seal-wrap {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   text-align: center;
 }
 
 .zero-one-seal-wrap img {
-  max-width: 480px;
+  max-width: 440px;
+  width: 100%;
+  height: auto;
   margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .zero-one-card {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 1.5rem;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .zero-one-brand-logo {
+    margin: 1.25rem auto 1.5rem auto;
+  }
+
+  .zero-one-actions {
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================

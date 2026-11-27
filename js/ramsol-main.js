@@ -263,6 +263,122 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ==========================================================================
+     03C. CARRUSEL FILTERSOL ZEROLLUVIA (SECCIÓN 2 DEL HOME)
+     - Cambio fluido de fotos con autoplay cada 5s
+     - Flechas de navegación, dots indicadores y soporte táctil swipe
+     ========================================================================== */
+  const filtersolCarousel = document.getElementById('filtersolCarousel');
+  if (filtersolCarousel) {
+    const fsSlides = filtersolCarousel.querySelectorAll('.filtersol-slide');
+    const fsDots = filtersolCarousel.querySelectorAll('.filtersol-dot');
+    const fsPrevBtn = filtersolCarousel.querySelector('.filtersol-arrow.prev');
+    const fsNextBtn = filtersolCarousel.querySelector('.filtersol-arrow.next');
+
+    if (fsSlides.length > 0) {
+      let fsCurrent = 0;
+      const fsTotal = fsSlides.length;
+      let fsTimer = null;
+      const fsInterval = 5000; // 5 segundos como en el original
+
+      function fsGoTo(index) {
+        fsSlides[fsCurrent].classList.remove('active');
+        if (fsDots[fsCurrent]) fsDots[fsCurrent].classList.remove('active');
+
+        fsCurrent = (index + fsTotal) % fsTotal;
+
+        fsSlides[fsCurrent].classList.add('active');
+        if (fsDots[fsCurrent]) fsDots[fsCurrent].classList.add('active');
+      }
+
+      function fsNext() {
+        fsGoTo(fsCurrent + 1);
+      }
+
+      function fsPrev() {
+        fsGoTo(fsCurrent - 1);
+      }
+
+      function fsStartAutoplay() {
+        if (!fsTimer) {
+          fsTimer = setInterval(fsNext, fsInterval);
+        }
+      }
+
+      function fsStopAutoplay() {
+        if (fsTimer) {
+          clearInterval(fsTimer);
+          fsTimer = null;
+        }
+      }
+
+      function fsResetAutoplay() {
+        fsStopAutoplay();
+        fsStartAutoplay();
+      }
+
+      if (fsNextBtn) {
+        fsNextBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          fsNext();
+          fsResetAutoplay();
+        });
+      }
+
+      if (fsPrevBtn) {
+        fsPrevBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          fsPrev();
+          fsResetAutoplay();
+        });
+      }
+
+      fsDots.forEach(function (dot, idx) {
+        dot.addEventListener('click', function (e) {
+          e.preventDefault();
+          fsGoTo(idx);
+          fsResetAutoplay();
+        });
+      });
+
+      // Pausar con hover en desktop
+      filtersolCarousel.addEventListener('mouseenter', fsStopAutoplay);
+      filtersolCarousel.addEventListener('mouseleave', fsStartAutoplay);
+
+      // Soporte táctil / swipe móvil
+      let fsTouchStartX = 0;
+      let fsTouchEndX = 0;
+
+      filtersolCarousel.addEventListener('touchstart', function (e) {
+        fsTouchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      filtersolCarousel.addEventListener('touchend', function (e) {
+        fsTouchEndX = e.changedTouches[0].screenX;
+        const diffX = fsTouchEndX - fsTouchStartX;
+        if (Math.abs(diffX) > 40) {
+          if (diffX < 0) {
+            fsNext();
+          } else {
+            fsPrev();
+          }
+          fsResetAutoplay();
+        }
+      }, { passive: true });
+
+      // Iniciar autoplay
+      fsStartAutoplay();
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          fsStopAutoplay();
+        } else {
+          fsStartAutoplay();
+        }
+      });
+    }
+  }
+
+  /* ==========================================================================
      04. REPRODUCTOR DE VIDEO FACADE (CARGA DIFERIDA DE YOUTUBE)
      ========================================================================== */
   const videoFacades = document.querySelectorAll('.video-facade-container');

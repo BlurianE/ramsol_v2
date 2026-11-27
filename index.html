@@ -27,7 +27,7 @@
   <!-- Iconografía FontAwesome -->
   <link rel="stylesheet" href="css/all.min.css">
   <!-- Estilos Modernos y Minimalistas Ramsol -->
-  <link rel="stylesheet" href="css/ramsol-custom.css?v=2.2">
+  <link rel="stylesheet" href="css/ramsol-custom.css?v=2.12">
 
   <!-- Scripts iniciales locales y analítica condicional -->
   <script src="js/local-file.js"></script>
@@ -397,10 +397,9 @@
     </section>
 
     <!-- ==========================================================================
-       SECCIÓN 03: MANIFIESTO Y FÓRMULA TERRAZALOFT (SECCIÓN 1 DEL CONTENIDO)
+       SECCIÓN 03: MANIFIESTO (SECCIÓN 1 DEL CONTENIDO)
        - Fondo de color #2B2B2B
        - Rotador de texto dinámico con trazo exterior centrado
-       - Ecuación visual TerrazaLoft
        ========================================================================== -->
     <section class="manifesto-section section-padding reveal-on-scroll">
       <div class="container">
@@ -413,24 +412,14 @@
             </div>
           </div>
         </div>
-        <div class="manifesto-equation">
-          <span class="eq-item">Pérgola</span>
-          <span class="eq-op">+</span>
-          <span class="eq-item">Muebles</span>
-          <span class="eq-op">+</span>
-          <span class="eq-item">Celosía</span>
-          <span class="eq-op">+</span>
-          <span class="eq-item">Deck</span>
-          <span class="eq-op">=</span>
-          <span class="eq-result">TerrazaLoft</span>
-        </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-       SECCIÓN 04: PÉRGOLAS & SISTEMA FILTERSOL ZEROLLUVIA
+       SECCIÓN 04: PÉRGOLAS & SISTEMA FILTERSOL ZEROLLUVIA (SECCIÓN 2 DEL CONTENIDO)
        - Beneficios técnicos de sombra y protección climática
-       - Galería de detalle de componentes del sistema
+       - Carrusel interactivo con badge FilterSol sobrepuesto en esquina superior derecha
+       - Pleca TerrazaLoft colocada debajo de los demás elementos
        ========================================================================== -->
     <section class="filtersol-section section-padding reveal-on-scroll">
       <div class="container">
@@ -443,11 +432,14 @@
               Con la más avanzada tecnología y el innovador <strong>Sistema FilterSol ZeroLluvia</strong>. Disfruta de la frescura exterior protegiéndote completamente del sol y las lluvias torrenciales.
             </p>
             
-            <div class="filtersol-badge-card">
-              <img src="images/Sistema-Filter-Sol_Zero-Lluvia_Ramsol_Icono_1.png" alt="Sistema FilterSol ZeroLluvia">
+            <div class="filtersol-feature-card">
+              <div class="filtersol-feature-icon">
+                <i class="fas fa-sun" style="color: #F59E0B;"></i>
+                <i class="fas fa-cloud-showers-heavy" style="color: #3B82F6;"></i>
+              </div>
               <div>
-                <h4 style="font-family: var(--font-heading); font-weight: 700; margin-bottom: 0.25rem;">Control Solar + 100% Waterproof</h4>
-                <p style="font-size: 0.95rem; color: var(--color-text-muted);">Estructuras diseñadas para resistir vientos huracanados e inclemencias climáticas sin deformarse.</p>
+                <h4 style="font-family: var(--font-heading); font-weight: 700; margin-bottom: 0.25rem; font-size: 1.05rem;">Control Solar + 100% Waterproof</h4>
+                <p style="font-size: 0.95rem; color: var(--color-text-muted); margin: 0;">Estructuras diseñadas para resistir vientos huracanados e inclemencias climáticas sin deformarse.</p>
               </div>
             </div>
 
@@ -456,18 +448,58 @@
             </div>
           </div>
 
-          <!-- Galería de Detalles -->
-          <div class="filtersol-gallery">
-            <div class="filtersol-thumb">
-              <img src="images/Ramsol_Sistema_Filter-Sol_Pergola_01.png" alt="Detalle Pérgola Ramsol 01">
+          <!-- Carrusel de Fotografías con Badge Sobrepuesto -->
+          <div class="filtersol-carousel-wrapper">
+            <!-- Badge sobrepuesto en la esquina superior derecha -->
+            <div class="filtersol-overlay-badge">
+              <img src="images/Sistema-Filter-Sol_Zero-Lluvia_Ramsol_Icono_1.png" alt="Sistema FilterSol ZeroLluvia" width="220" height="101" loading="lazy">
             </div>
-            <div class="filtersol-thumb">
-              <img src="images/Ramsol_Sistema_Filter-Sol_Pergola_02.png" alt="Detalle Pérgola Ramsol 02">
-            </div>
-            <div class="filtersol-thumb">
-              <img src="images/Ramsol_Sistema_Filter-Sol_Pergola_03.png" alt="Detalle Pérgola Ramsol 03">
+
+            <div class="filtersol-carousel" id="filtersolCarousel" aria-label="Carrusel Sistema FilterSol ZeroLluvia">
+              <div class="filtersol-slides-track">
+                <div class="filtersol-slide active">
+                  <img src="images/Ramsol_Sistema_Filter-Sol_Pergola_01.png" alt="Sistema FilterSol Pérgolas Ramsol Detalle 01" loading="lazy">
+                </div>
+                <div class="filtersol-slide">
+                  <img src="images/Ramsol_Sistema_Filter-Sol_Pergola_02.png" alt="Sistema FilterSol Pérgolas Ramsol Detalle 02" loading="lazy">
+                </div>
+                <div class="filtersol-slide">
+                  <img src="images/Ramsol_Sistema_Filter-Sol_Pergola_03.png" alt="Sistema FilterSol Pérgolas Ramsol Detalle 03" loading="lazy">
+                </div>
+              </div>
+
+              <!-- Flechas de navegación -->
+              <button class="filtersol-arrow prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+              <button class="filtersol-arrow next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+
+              <!-- Indicadores de puntos -->
+              <div class="filtersol-dots">
+                <button class="filtersol-dot active" aria-label="Foto 1"></button>
+                <button class="filtersol-dot" aria-label="Foto 2"></button>
+                <button class="filtersol-dot" aria-label="Foto 3"></button>
+              </div>
             </div>
           </div>
+
+        </div>
+
+        <!-- Pleca TerrazaLoft colocada debajo de los demás elementos -->
+        <div class="manifesto-equation-wrapper">
+          <div class="manifesto-equation">
+            <span class="eq-item">Pérgola</span>
+            <span class="eq-op">+</span>
+            <span class="eq-item">Muebles</span>
+            <span class="eq-op">+</span>
+            <span class="eq-item">Celosía</span>
+            <span class="eq-op">+</span>
+            <span class="eq-item">Deck</span>
+            <span class="eq-op">=</span>
+            <span class="eq-result">TerrazaLoft</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
 
         </div>
       </div>
@@ -641,9 +673,10 @@
        SECCIÓN 07: MESAS CUBIERTAS RAMSTONE
        - Material porcelánico y pétreo de alta gama
        - Enlace directo al catálogo de cubiertas
+       - Efecto de imagen fija idéntico al original
        ========================================================================== -->
-    <section class="ramstone-section section-padding reveal-on-scroll">
-      <div class="container">
+    <section class="ramstone-section section-padding">
+      <div class="container reveal-on-scroll">
         
         <div class="ramstone-banner">
           <img src="images/Ramstone_Ramsol_Mesas.png" alt="Ramstone Ramsol Mesas Cubiertas">
@@ -654,7 +687,7 @@
           Abre las puertas al exterior con Ramsol y vive tu sueño sin preocupaciones. Superficies de resistencia superior a manchas, calor y rayaduras.
         </p>
 
-        <a href="mesas-cubiertas.html" class="btn btn-dark">Conoce Más <i class="fas fa-arrow-right"></i></a>
+        <a href="mesas-cubiertas.html" class="btn btn-primary">Conoce Más <i class="fas fa-arrow-right"></i></a>
 
       </div>
     </section>
@@ -663,9 +696,10 @@
        SECCIÓN 08: MUEBLES TODO TERRENO
        - Mobiliario con resistencia All-Weather
        - Demostración en video
+       - Efecto de imagen fija idéntico al original
        ========================================================================== -->
-    <section class="furniture-section section-padding reveal-on-scroll">
-      <div class="container">
+    <section class="furniture-section section-padding">
+      <div class="container reveal-on-scroll">
         <div class="split-content-grid">
           
           <div class="split-text-col">
@@ -697,9 +731,9 @@
        SECCIÓN 09: BANNER TERRAZA LOFT
        - Banner panorámico de la línea Terraza Loft
        ========================================================================== -->
-    <section class="section-padding" style="background-color: var(--color-bg-white); text-align: center; border-bottom: 1px solid var(--color-border);">
+    <section class="terraza-loft-banner-section section-padding">
       <div class="container reveal-on-scroll">
-        <img src="images/Terraza_Loft_Ramsol_ZeroMadera_Waterproof_h02.png" alt="Terraza Loft ZeroMadera Waterproof" style="max-width: 680px; margin: 0 auto;">
+        <img src="images/Terraza_Loft_Ramsol_ZeroMadera_Waterproof_h02.png" alt="Terraza Loft ZeroMadera Waterproof" class="terraza-loft-banner-img" width="800" height="150" loading="lazy">
       </div>
     </section>
 
@@ -713,9 +747,15 @@
         <div class="split-content-grid">
           
           <div>
-            <div class="video-facade-container" data-youtube-id="Nf5PQD6jb1U" data-title="Tecnología ZeroMadera Waterproof Ramsol">
-              <img src="https://img.youtube.com/vi/Nf5PQD6jb1U/maxresdefault.jpg" alt="Tecnología ZeroMadera" class="video-facade-poster">
-              <div class="video-play-btn"><i class="fas fa-play" style="font-size: 1.5rem; margin-left: 4px;"></i></div>
+            <div class="video-frame-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/Nf5PQD6jb1U?rel=0"
+                title="Tecnología ZeroMadera Waterproof Ramsol"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+              </iframe>
             </div>
           </div>
 
@@ -744,11 +784,11 @@
 
     <!-- ==========================================================================
        SECCIÓN 11: ZERO MADERA - ZERO PREOCUPACIONES
-       - Insignia emblemática de la promesa de marca
+       - Insignia emblemática de la promesa de marca con fondo parallax fijo
        ========================================================================== -->
-    <section style="background-color: var(--color-bg-light); padding: 4.5rem 0; text-align: center; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <section class="zeromadera-zeropreocupaciones-section">
       <div class="container reveal-on-scroll">
-        <img src="images/Zero-Madera_Zero-Preocupaciones_Ramsol.png" alt="Zero Madera Zero Preocupaciones" style="max-width: 520px; margin: 0 auto;">
+        <img src="images/Zero-Madera_Zero-Preocupaciones_Ramsol.png" alt="Zero Madera Zero Preocupaciones" class="zeromadera-zeropreocupaciones-img" width="570" height="130" loading="lazy">
       </div>
     </section>
 
@@ -794,10 +834,13 @@
         
         <div class="zero-one-card">
           
-          <div>
-            <span class="section-tag" style="color: #ff6b61;">Diseño de Vanguardia</span>
-            <h2 class="zero-one-title">¡NUEVA COLECCIÓN!<br><span style="color: #ff6b61;">ZERO</span> | ONE</h2>
-            <p style="font-size: 1.1rem; color: #d1d5db; line-height: 1.7;">
+          <div class="zero-one-content-col">
+            <span class="section-tag" style="color: var(--color-accent-red);">Diseño de Vanguardia</span>
+            <h2 class="zero-one-title">¡NUEVA COLECCIÓN!</h2>
+            <div class="zero-one-brand-logo-wrap">
+              <img src="images/Silla_Zero-One_Ramsol_WEB.png" alt="ZERO ONE Signature by Ramsol" class="zero-one-brand-logo" width="204" height="170" loading="lazy">
+            </div>
+            <p class="zero-one-description">
               Piezas icónicas de diseño escultórico concebidas para transformar los espacios exteriores en galerías habitables de sofisticación pura.
             </p>
 
@@ -805,21 +848,23 @@
               <a href="https://zerone.mx/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                 Conoce ZERO | ONE <i class="fas fa-arrow-right"></i>
               </a>
-              <a href="https://ramsol.com/Catalogos/Ramsol_Zero-One.pdf" target="_blank" class="btn btn-outline-white">
+              <a href="https://ramsol.com/Catalogos/Ramsol_Zero-One.pdf" target="_blank" class="btn btn-outline-dark">
                 Ver Catálogo PDF <i class="fas fa-file-pdf"></i>
               </a>
             </div>
           </div>
 
-          <div class="zero-one-img-wrap">
-            <img src="images/Silla_Zero-One_Ramsol_WEB.png" alt="Silla Zero-One Ramsol Signature">
+          <div class="zero-one-photo-col">
+            <div class="zero-one-photo-wrap">
+              <img src="images/IMG_8289.jpg" alt="Mobiliario Colección ZERO ONE Ramsol" class="zero-one-photo" width="1000" height="750" loading="lazy">
+            </div>
           </div>
 
         </div>
 
         <!-- Sello Seleccionado AMD 2026 -->
         <div class="zero-one-seal-wrap">
-          <img src="images/Sello_Ramsol_Zero-One_Seleccionado_AMD_2026.png" alt="Sello Ramsol Zero-One Seleccionado AMD 2026">
+          <img src="images/Sello_Ramsol_Zero-One_Seleccionado_AMD_2026.png" alt="Sello Ramsol Zero-One Seleccionado AMD 2026" width="440" height="55" loading="lazy">
         </div>
 
       </div>
@@ -982,7 +1027,7 @@
   <!-- ==========================================================================
      SCRIPTS DE FUNCIONALIDAD
      ========================================================================== -->
-  <script src="js/ramsol-main.js?v=2.2"></script>
+  <script src="js/ramsol-main.js?v=2.3"></script>
 
 </body>
 </html>
